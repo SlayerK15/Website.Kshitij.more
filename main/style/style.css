@@ -1,0 +1,180 @@
+/* Reset some default styles */
+body, nav, section, footer, ul, li, h2, p, img {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    overflow: hidden; /* Hide the scrollbar */
+    margin: 0; /* Remove default body margin */
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full viewport height */
+}
+
+/* Navbar styles */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #000000; /* Solid black background */
+    z-index: 1000;
+    padding: 10px 20px; /* Add padding */
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+nav .logo {
+    display: flex;
+    align-items: center;
+}
+
+nav .logo img {
+    width: 50px; /* Adjust size of logo */
+    height: 40px;
+    margin-right: 10px; /* Add space between logo and text */
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a, span {
+    text-decoration: none;
+    color: rgb(255, 255, 255); /* Change link color to white */
+    font-size: 16px; /* Adjust font size */
+    font-weight: 300; /* Use thinner font weight */
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #454e58;
+}
+
+/* Main content */
+main {
+    padding-top: 80px; /* Adjust padding to account for fixed navbar */
+    flex: 1; /* Allow main content to take up remaining space */
+    overflow-y: auto; /* Enable scrolling within main content */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.project {
+    position: relative;
+    margin-bottom: 20px;
+    width: calc(33.33% - 20px); /* Adjust the width of each project */
+}
+
+.project img {
+    width: 100%; /* Ensure image fills container */
+    height: auto; /* Maintain aspect ratio */
+    transition: filter 0.3s; /* Smooth transition for filter property */
+}
+
+.project .project-info {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black overlay */
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s; /* Smooth transition for opacity */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.project .project-info h3 {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.project .project-info p {
+    color: white;
+    font-size: 14px;
+    line-height: 1.4;
+    max-height: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.project:hover .project-info {
+    opacity: 1; /* Show overlay on hover */
+}
+
+/* Footer styles */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #000000; /* Solid black background */
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer .social-media {
+    margin-left: auto; /* Push social icons to the right */
+}
+
+footer .social-media a {
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+footer .social-media i {
+    width: 1vw;
+    transition: transform 0.3s;
+    font-size: 24px; /* Adjust icon size */
+    color: white; /* Set default icon color to white */
+    transition: color 0.3s; /* Add transition for color change */
+}
+
+footer .social-media i:hover {
+    transform: scale(1.1);
+    color: #808080; /* Change icon color to grey on hover */
+}
+
+footer p {
+    margin: 0; /* Remove default margin */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .project {
+        width: calc(100% - 20px);
+    }
+}

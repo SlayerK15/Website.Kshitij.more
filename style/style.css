@@ -1,0 +1,97 @@
+body, sign, name, footer, insta, gmail {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden; 
+}
+
+.background-slideshow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    background-size: cover; 
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+}
+
+
+sign {
+    position: absolute;
+    top: 20px;
+    left: 75px;
+}
+
+sign img {
+    max-width: 100px;
+    height: auto;
+}
+
+
+name {
+    position: absolute;
+    left: 75px; 
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+name p {
+    font-size: 24px;
+    font-weight: bold;
+    color: white; 
+}
+
+name a {
+    text-decoration: none; 
+    color: white;
+    transition: color 0.3s, background-color 0.3s, text-shadow 0.3s, transform 0.3s; 
+}
+
+name a:hover {
+    color: #007BFF;
+    background-color: rgba(255, 255, 255, 0.1); /* Add background color on hover */
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Add text shadow on hover */
+    transform: scale(1.1); /* Slightly scale the text on hover */
+}
+
+/* Footer styles */
+footer {
+    display: flex;
+    justify-content: flex-start;
+    position: absolute;
+    bottom: 20px;
+    left: 75px; /* Set left margin */
+    right: 75px; /* Set right margin */
+    width: calc(100% - 150px); /* Adjust width to fit within horizontal margins */
+}
+
+/* Insta and Gmail styles */
+footer i {
+    font-size: 24px; /* Adjust icon size */
+    color: white; /* Set default icon color to white */
+    transition: color 0.3s; /* Add transition for color change */
+}
+
+footer a:hover i {
+    color: #808080; /* Change icon color to grey on hover */
+}
+
+footer a {
+    display: inline-block;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
