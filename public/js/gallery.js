@@ -20,14 +20,8 @@
       photos = (data.photos || []).filter((p) => p && p.src);
       setSyncBadge(data.source);
     } catch {
-      // Hard fallback: bundled assets, if even the API is unreachable.
-      photos = Array.from({ length: 16 }, (_, i) => ({
-        id: `local-${i + 1}`,
-        src: `/assets/${i + 1}.jpg`,
-        thumb: `/assets/${i + 1}.jpg`,
-        caption: "",
-      }));
-      setSyncBadge("local");
+      photos = [];
+      setSyncBadge("empty");
     }
     render();
   }
@@ -35,9 +29,9 @@
   function setSyncBadge(source) {
     const map = {
       live:  ['<i class="ri-film-line"></i>', "latest frames", true],
-      local: ['<i class="ri-folder-image-line"></i>', "local archive", false],
+      empty: ['<i class="ri-folder-image-line"></i>', "awaiting frames", false],
     };
-    const [icon, label, live] = map[source] || map.local;
+    const [icon, label, live] = map[source] || map.empty;
     syncState.innerHTML = `${icon} ${label}`;
     syncState.classList.toggle("live", !!live);
   }

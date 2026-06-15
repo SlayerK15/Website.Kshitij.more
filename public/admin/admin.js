@@ -73,7 +73,11 @@
   function render() {
     grid.innerHTML = "";
     if (!photos.length) {
-      grid.innerHTML = `<p class="admin-empty">No photos yet — add some above.</p>`;
+      grid.innerHTML = `
+        <p class="admin-empty">
+          No photos yet — drag images into the box above, or click it to choose files from your device.<br />
+          <strong>Heads up:</strong> newly added photos can take up to 5 minutes to appear on the live site.
+        </p>`;
       return;
     }
     photos.forEach((p) => {
