@@ -57,7 +57,7 @@ function localFallback() {
       src: `/assets/${n}.jpg`,
       thumb: `/assets/${n}.jpg`,
       caption: "",
-      permalink: "https://www.instagram.com/horizonfilmss/",
+      permalink: "https://www.instagram.com/the.horizonfilms/",
       timestamp: null,
     };
   });
