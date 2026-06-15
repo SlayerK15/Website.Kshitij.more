@@ -194,6 +194,7 @@ a { color: inherit; text-decoration: none; }
   background: rgba(8,8,10,.96); backdrop-filter: blur(6px);
   opacity: 0; transition: opacity .3s; padding: 40px;
 }
+.lightbox[hidden] { display: none; }
 .lightbox.open { opacity: 1; }
 .lb-figure { margin: 0; max-width: 90vw; max-height: 86vh; display: grid; gap: 14px;
   justify-items: center; }
