@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Horizon Films — Kshitij More</title>
+  <meta name="description" content="Photography and film by Kshitij More. A living gallery that syncs straight from the camera roll to the screen." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Horizon Films — Kshitij More" />
+  <meta property="og:description" content="Photography and film by Kshitij More." />
+  <meta property="og:type" content="website" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <!-- Display: Fraunces (optical cinematic serif). Body: Inter. Mono: Space Mono. -->
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="icon" href="/assets/logo.png" />
+</head>
+<body>
+  <!-- film grain + vignette overlays -->
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <!-- ===== Header ===== -->
+  <header class="site-head">
+    <a class="brand" href="/">
+      <img src="/assets/logo.png" alt="" class="brand__mark" />
+      <span class="brand__name">Horizon Films</span>
+    </a>
+    <nav class="site-nav">
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- ===== Hero / viewfinder ===== -->
+  <section class="hero" id="top">
+    <div class="viewfinder">
+      <span class="vf-corner vf-tl"></span>
+      <span class="vf-corner vf-tr"></span>
+      <span class="vf-corner vf-bl"></span>
+      <span class="vf-corner vf-br"></span>
+      <div class="vf-stage" id="heroStage"></div>
+      <div class="vf-hud">
+        <span class="hud-rec"><i></i> REC</span>
+        <span class="hud-mode" id="heroMeta">HORIZON · 24fps</span>
+      </div>
+    </div>
+    <div class="hero-copy">
+      <p class="eyebrow">Photography &amp; Film — Kshitij More</p>
+      <h1 class="hero-title">Light, caught<br />before it leaves.</h1>
+      <p class="hero-sub">
+        A living gallery. New frames arrive here on their own, straight from the
+        camera roll the moment they're posted.
+      </p>
+      <a class="cta" href="#work">See the latest frames <i class="ri-arrow-down-line"></i></a>
+    </div>
+  </section>
+
+  <!-- ===== Gallery ===== -->
+  <section class="work" id="work">
+    <div class="section-head">
+      <span class="section-label">01 — Selected frames</span>
+      <span class="sync-state" id="syncState" title="Where these photos come from">
+        <i class="ri-loader-4-line spin"></i> loading
+      </span>
+    </div>
+    <div class="masonry" id="masonry" aria-live="polite"></div>
+    <div class="empty" id="empty" hidden>
+      <p>No frames yet. Connect an Instagram account and they'll appear here automatically.</p>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section class="about" id="about">
+    <span class="section-label">02 — About</span>
+    <p class="about-lead">
+      Kshitij More shoots stills and motion under the name Horizon Films —
+      portraits, places, and the in-between moments that usually go unposted.
+    </p>
+    <p class="about-body">
+      This site is wired directly to that work. Every photo you see was pulled
+      automatically from the feed, framed, and laid out without anyone touching
+      the code. Shoot, post, done — the gallery keeps itself current.
+    </p>
+  </section>
+
+  <!-- ===== Footer / contact ===== -->
+  <footer class="site-foot" id="contact">
+    <div class="foot-left">
+      <span class="section-label">03 — Get in touch</span>
+      <a class="foot-mail" href="mailto:morekshitij10@gmail.com">morekshitij10@gmail.com</a>
+    </div>
+    <div class="foot-right">
+      <a href="https://www.instagram.com/horizonfilmss" target="_blank" rel="noopener" aria-label="Instagram">
+        <i class="ri-instagram-line"></i>
+      </a>
+      <a href="mailto:morekshitij10@gmail.com" aria-label="Email">
+        <i class="ri-mail-line"></i>
+      </a>
+    </div>
+    <p class="foot-fine">© <span id="year"></span> Kshitij More · Horizon Films</p>
+  </footer>
+
+  <!-- ===== Lightbox ===== -->
+  <div class="lightbox" id="lightbox" hidden>
+    <button class="lb-close" id="lbClose" aria-label="Close">
+      <i class="ri-close-line"></i>
+    </button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Previous">
+      <i class="ri-arrow-left-s-line"></i>
+    </button>
+    <figure class="lb-figure">
+      <img id="lbImg" alt="" />
+      <figcaption id="lbCap"></figcaption>
+    </figure>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Next">
+      <i class="ri-arrow-right-s-line"></i>
+    </button>
+    <span class="lb-counter" id="lbCounter"></span>
+  </div>
+
+  <script src="/js/gallery.js"></script>
+</body>
+</html>

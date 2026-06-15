@@ -1,0 +1,7 @@
+{
+  "_comment": "Optional manual control over the auto-synced gallery. Edit and redeploy. Use the photo 'id' from /api/gallery. Leave arrays empty to let everything sync as-is.",
+  "hidden": [],
+  "pinned": [],
+  "order": [],
+  "captions": {}
+}
