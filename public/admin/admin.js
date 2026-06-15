@@ -145,7 +145,8 @@
   }
 
   // ---- upload ----
-  dropZone.addEventListener("click", () => fileInput.click());
+  // dropZone is a <label> for fileInput, so clicking it already opens the
+  // picker natively — no extra fileInput.click() needed here.
   fileInput.addEventListener("change", () => handleFiles(fileInput.files));
 
   ["dragenter", "dragover"].forEach((evt) =>
