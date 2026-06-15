@@ -5,6 +5,8 @@
 .admin-login {
   min-height: 100vh; display: grid; place-items: center; padding: 24px;
 }
+.admin-login[hidden] { display: none; }
+.admin-dash[hidden] { display: none; }
 .admin-card {
   width: 100%; max-width: 360px; background: var(--panel);
   border: 1px solid var(--line); border-radius: 10px; padding: 32px;
