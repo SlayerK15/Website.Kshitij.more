@@ -140,6 +140,10 @@
       body: JSON.stringify({ id }),
     });
     const data = await res.json();
+    if (!res.ok) {
+      alert(data.error || "Delete failed");
+      return;
+    }
     photos = data.photos || [];
     render();
   }

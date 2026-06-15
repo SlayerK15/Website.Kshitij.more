@@ -222,7 +222,10 @@ a { color: inherit; text-decoration: none; }
   .lb-prev { left: 12px; } .lb-next { right: 12px; }
 }
 @media (max-width: 520px) {
-  .site-nav a:not(:last-child) { display: none; } /* keep header light on phones */
+  .site-head { padding: 14px clamp(16px, 5vw, 56px); }
+  .brand__name { display: none; } /* logo only — frees space for full nav */
+  .site-nav { gap: 14px; }
+  .site-nav a { font-size: 11px; letter-spacing: .1em; }
   .masonry { columns: 1; }
 }
 
