@@ -12,8 +12,10 @@
   const fileInput = $("#fileInput");
   const dropLabel = $("#dropLabel");
 
-  const MAX_DIM = 2000;
-  const JPEG_QUALITY = 0.82;
+  // Smaller than the original camera file, but plenty for a masonry grid
+  // and lightbox — keeps uploads and page loads fast.
+  const MAX_DIM = 1600;
+  const JPEG_QUALITY = 0.78;
 
   // ---- auth ----
   loginForm.addEventListener("submit", async (e) => {

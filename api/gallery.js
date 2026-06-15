@@ -6,7 +6,7 @@ const store = require("../lib/blob");
 
 module.exports = async (req, res) => {
   res.setHeader("Content-Type", "application/json");
-  res.setHeader("Cache-Control", "s-maxage=60, stale-while-revalidate=86400");
+  res.setHeader("Cache-Control", "s-maxage=5, stale-while-revalidate=30");
 
   try {
     const manifest = await store.getManifest();
