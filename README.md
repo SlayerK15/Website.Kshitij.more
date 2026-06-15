@@ -1,81 +1,71 @@
-# Horizon Films — self-syncing gallery
+# Horizon Films — gallery with admin uploads
 
-A photography portfolio for **Kshitij More (Horizon Films)** that keeps itself
-current. Post a photo to Instagram and it shows up here on its own — framed,
-laid out in a cinematic masonry gallery, no code edits.
+A photography portfolio for **Kshitij More (Horizon Films)**: a cinematic
+masonry gallery with a lightbox, plus a private `/admin` page where Kshitij
+can log in and add, caption, reorder, or remove photos — no code edits.
 
-This is the enhanced version of the original static site: same brand, but now a
-managed gallery instead of hard-coded `project1.html` … `project10.html` files.
+This is the enhanced version of the original static site: same brand, but now
+a managed gallery instead of hard-coded `project1.html` … `project10.html`
+files.
 
 ## How it works
 
 ```
- Instagram account
-        │  (Instagram Graph API, OAuth — owner connects once)
+ /admin             ← password-protected: upload, caption, reorder, delete
+        │  writes photos + manifest.json to Vercel Blob
         ▼
- /api/sync          ← Vercel Cron runs this once daily
-        │  fetches recent media, refreshes the token, caches the result
-        ▼
- /api/gallery       ← the frontend calls this on load
-        │  returns the cached + curated photo list as JSON
+ /api/gallery       ← the public frontend calls this on load
+        │  returns the current photo list as JSON
         ▼
  public/index.html  ← cinematic masonry gallery, lightbox, viewfinder hero
 ```
 
-No database and no server to babysit — everything runs as Vercel serverless
-functions plus static files. Until Instagram is connected, the site serves the
-16 bundled photos in `public/assets/`, so it's never blank.
+No database — photo files and their order/captions live in Vercel Blob as a
+small `manifest.json` plus the image files. Until any photos are uploaded,
+the site serves the 16 bundled photos in `public/assets/`, so it's never
+blank.
 
 ## Project layout
 
 ```
 api/
-  auth/start.js      → redirects to the Instagram consent screen
-  auth/callback.js   → exchanges the code for a long-lived token
-  gallery.js         → public JSON feed the frontend reads
-  sync.js            → refreshes media + token (Cron + manual)
+  gallery.js          → public JSON feed the frontend reads
+  admin/login.js       → POST { password } -> sets session cookie
+  admin/logout.js       → clears session cookie
+  admin/photos.js        → authenticated CRUD (list/upload/caption/reorder/delete)
 lib/
-  instagram.js       → Graph API wrapper
-  store.js           → /tmp cache + curation overrides
-data/
-  curation.json      → hide / pin / reorder / re-caption photos
+  auth.js             → signed session cookie (single admin password)
+  blob.js             → Vercel Blob: manifest + photo storage
+  http.js             → tiny JSON body reader
 public/
-  index.html, css/, js/, assets/
-vercel.json          → routing + the every-6-hours sync cron
+  index.html, css/, js/, assets/   → public site
+  admin/                            → login + management UI (not linked from the public site)
+vercel.json           → routing + security headers
 ```
 
 ## Deploy
 
 1. **Push to GitHub**, then import the repo at [vercel.com/new](https://vercel.com/new).
-2. **Create the Instagram app** at [developers.facebook.com](https://developers.facebook.com):
-   - Add the **Instagram** product, using *Instagram API with Instagram Login*.
-   - The Instagram account must be a **Professional (Business/Creator)** account.
-   - Add an OAuth redirect URI: `https://<your-domain>/api/auth/callback`.
+2. **Add a Blob store**: in the Vercel project, go to **Storage → Create
+   Database → Blob**, and connect it to this project. This sets
+   `BLOB_READ_WRITE_TOKEN` automatically.
 3. **Set environment variables** in Vercel (see `.env.example`):
-   `IG_APP_ID`, `IG_APP_SECRET`, `IG_REDIRECT_URI`, `SYNC_SECRET`.
-4. **Connect the account once:** visit `https://<your-domain>/api/auth/start`,
-   approve, then copy the long-lived token it shows you into Vercel as
-   `IG_LONG_LIVED_TOKEN` and redeploy.
-5. Done. The cron keeps the gallery synced and refreshes the token before it
-   expires.
+   - `ADMIN_PASSWORD` — the password for `/admin`. Required.
+   - `SESSION_SECRET` — optional; falls back to `ADMIN_PASSWORD` if unset.
+4. Redeploy. Visit `https://<your-domain>/admin`, log in, and start adding
+   photos.
 
-> **Note on "auto-sync":** Instagram does not allow silent scraping of an
-> account. The only compliant path is the Graph API with a one-time OAuth
-> connect, which is what this uses. After that single approval, syncing is fully
-> automatic.
+## Managing photos
 
-## Curating without code
+Go to `/admin` (not linked anywhere on the public site — bookmark it) and log
+in with `ADMIN_PASSWORD`:
 
-Edit `data/curation.json` and redeploy. Get photo IDs from `/api/gallery`.
-
-```json
-{
-  "hidden":   ["17900000000000000"],
-  "pinned":   ["17911111111111111"],
-  "order":    [],
-  "captions": { "17922222222222222": "Backstage, Nagpur — 2026" }
-}
-```
+- **Add photos**: click or drag-and-drop images onto the upload area. They're
+  resized to a max of 2000px and re-encoded as JPEG client-side before
+  upload, so even large camera files upload quickly.
+- **Caption**: click into a photo's caption field and edit; it saves on blur.
+- **Reorder**: drag tiles to change the order shown on the public gallery.
+- **Delete**: click the × on a tile.
 
 ## Local development
 
@@ -84,4 +74,5 @@ npm i -g vercel
 vercel dev
 ```
 
-Without credentials it runs against the bundled local photos.
+Without `ADMIN_PASSWORD`/Blob configured, `/api/gallery` serves the bundled
+local photos and `/admin` will show login errors until env vars are set.

@@ -34,9 +34,8 @@
 
   function setSyncBadge(source) {
     const map = {
-      instagram:        ['<i class="ri-instagram-line"></i>', "synced live", true],
-      "instagram-stale":['<i class="ri-instagram-line"></i>', "synced", true],
-      local:            ['<i class="ri-folder-image-line"></i>', "local archive", false],
+      live:  ['<i class="ri-film-line"></i>', "latest frames", true],
+      local: ['<i class="ri-folder-image-line"></i>', "local archive", false],
     };
     const [icon, label, live] = map[source] || map.local;
     syncState.innerHTML = `${icon} ${label}`;

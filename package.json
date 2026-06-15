@@ -1,14 +1,17 @@
 {
   "name": "horizon-films",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
-  "description": "Self-syncing photography gallery for Kshitij More (Horizon Films). Pulls frames from Instagram via the Graph API and presents them in a cinematic gallery.",
+  "description": "Photography gallery for Kshitij More (Horizon Films), with a password-protected admin page for uploading and curating photos, backed by Vercel Blob storage.",
   "scripts": {
     "dev": "vercel dev",
     "deploy": "vercel --prod"
   },
   "engines": {
     "node": "20.x"
+  },
+  "dependencies": {
+    "@vercel/blob": "^2.4.0"
   },
   "license": "MIT"
 }

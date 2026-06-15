@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Horizon Films — Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+  <link rel="icon" href="/assets/logo.png" />
+</head>
+<body class="admin-body">
+  <!-- ===== Login ===== -->
+  <section class="admin-login" id="loginView">
+    <form class="admin-card" id="loginForm">
+      <h1>Horizon Films</h1>
+      <p class="admin-sub">Admin login</p>
+      <input type="password" id="password" name="password" placeholder="Password" autocomplete="current-password" required />
+      <button type="submit">Log in</button>
+      <p class="admin-error" id="loginError" hidden></p>
+    </form>
+  </section>
+
+  <!-- ===== Dashboard ===== -->
+  <section class="admin-dash" id="dashView" hidden>
+    <header class="admin-head">
+      <h1>Horizon Films — Photos</h1>
+      <button class="admin-btn admin-btn--ghost" id="logoutBtn">Log out</button>
+    </header>
+
+    <label class="admin-drop" id="dropZone">
+      <input type="file" id="fileInput" accept="image/*" multiple hidden />
+      <span id="dropLabel">+ Add photos</span>
+    </label>
+    <p class="admin-hint">Drag to reorder. Click a caption to edit it. Images are resized for web automatically.</p>
+
+    <div class="admin-grid" id="grid"></div>
+  </section>
+
+  <script src="/admin/admin.js"></script>
+</body>
+</html>
