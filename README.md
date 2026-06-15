@@ -13,7 +13,7 @@ managed gallery instead of hard-coded `project1.html` … `project10.html` files
  Instagram account
         │  (Instagram Graph API, OAuth — owner connects once)
         ▼
- /api/sync          ← Vercel Cron runs this every 6 hours
+ /api/sync          ← Vercel Cron runs this once daily
         │  fetches recent media, refreshes the token, caches the result
         ▼
  /api/gallery       ← the frontend calls this on load
